@@ -1,0 +1,15 @@
+---
+- name: Create Inbound Firewall Rule on Windows Server
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create inbound firewall rule for HTTP
+      ansible.windows.win_firewall_rule:
+        name: Allow HTTP
+        enable: yes
+        direction: in
+        action: allow
+        localport: 80
+        protocol: TCP
+        description: "Inbound rule to allow HTTP traffic on port 80"
+        group: "Windows Firewall with Advanced Security"
