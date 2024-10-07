@@ -5,7 +5,7 @@
   tasks:
     - name: Create inbound firewall rules with loop
       loop: "{{ firewall_rules_inbound }}"
-      ansible.windows.win_firewall_rule:
+      community.windows.win_firewall_rule:
         name: "{{ item.name }}"
         enable: yes
         direction: in
@@ -17,7 +17,7 @@
 
     - name: Create outbound firewall rules with loop
       loop: "{{ firewall_rules_outbound }}"
-      ansible.windows.win_firewall_rule:
+      community.windows.win_firewall_rule:
         name: "{{ item.name }}"
         enable: yes
         direction: out
