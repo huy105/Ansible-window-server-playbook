@@ -1,2 +1,6 @@
 # service_vars.yml
-service_name: "CaptureService_17b059c9" 
+service_name: "CaptureService_17b059c9"
+service_list:
+  - CaptureService
+  - CaptureService_17b059c9
+  - CaptureService_5aab30e 

@@ -1,0 +1,38 @@
+---
+- name: Manage Windows Service
+  hosts: all
+  vars_files:
+    - vars/service_vars.yaml
+  tasks:
+    - name: Get the status of the services
+      ansible.windows.win_service_info:
+        name: "{{ item }}"
+      register: service_info
+      loop: "{{ service_list }}"
+      loop_control:
+        loop_var: item
+
+    - name: Debug service info (optional, for checking purposes)
+      debug:
+        var: service_info.results
+
+    - name: If any service is stopped, then start it
+      ansible.windows.win_service:
+        name: "{{ item.item }}"
+        state: started
+      when: item.services[0].state == 'stopped'
+      loop: "{{ service_info.results }}"
+      loop_control:
+        loop_var: item
+
+    - name: Get the status of the services after start
+      ansible.windows.win_service_info:
+        name: "{{ item }}"
+      register: service_info_after
+      loop: "{{ service_list }}"
+      loop_control:
+        loop_var: item
+
+    - name: Debug service info after start (optional, for checking purposes)
+      debug:
+        var: service_info_after.results
