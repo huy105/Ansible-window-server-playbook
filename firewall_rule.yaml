@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Create inbound firewall rule for HTTP
-      ansible.windows.win_firewall_rule:
+      community.windows.win_firewall_rule:
         name: Allow HTTP
         enable: yes
         direction: in
