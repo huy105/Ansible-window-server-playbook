@@ -1,0 +1,28 @@
+---
+- name: Create Inbound Firewall Rule on Windows Server
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create inbound firewall rules with loop
+      loop: "{{ firewall_rules_inbound }}"
+      ansible.windows.win_firewall_rule:
+        name: "{{ item.name }}"
+        enable: yes
+        direction: in
+        action: "{{ item.action }}"
+        localport: "{{ item.localport }}"
+        protocol: "{{ item.protocol }}"
+        description: "{{ item.description }}"
+        group: "{{ item.group }}"
+
+    - name: Create outbound firewall rules with loop
+      loop: "{{ firewall_rules_outbound }}"
+      ansible.windows.win_firewall_rule:
+        name: "{{ item.name }}"
+        enable: yes
+        direction: out
+        action: "{{ item.action }}"
+        localport: "{{ item.localport }}"
+        protocol: "{{ item.protocol }}"
+        description: "{{ item.description }}"
+        group: "{{ item.group }}"

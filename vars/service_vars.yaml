@@ -2,4 +2,43 @@
 service_name: "CaptureService_17b059c9"
 service_list:
   - CaptureService_17b059c9
-  - CaptureService_5aab30e 
+  - CaptureService_5aab30e
+firewall_rules_inbound:
+  - name: Allow HTTP
+    localport: 80
+    protocol: TCP
+    action: allow
+    description: "Allow inbound HTTP traffic"
+    group: "Windows Firewall with Advanced Security"
+  - name: Allow HTTPS
+    localport: 443
+    protocol: TCP
+    action: allow
+    description: "Allow inbound HTTPS traffic"
+    group: "Windows Firewall with Advanced Security"
+  - name: Allow FTP
+    localport: 21
+    protocol: TCP
+    action: allow
+    description: "Allow inbound FTP traffic"
+    group: "Windows Firewall with Advanced Security"
+
+firewall_rules_outbound:
+  - name: Allow HTTP
+    localport: 80
+    protocol: TCP
+    action: allow
+    description: "Allow outbound HTTP traffic"
+    group: "Windows Firewall with Advanced Security"
+  - name: Allow HTTPS
+    localport: 443
+    protocol: TCP
+    action: allow
+    description: "Allow outbound HTTPS traffic"
+    group: "Windows Firewall with Advanced Security"
+  - name: Allow FTP
+    localport: 21
+    protocol: TCP
+    action: allow
+    description: "Allow outbound FTP traffic"
+    group: "Windows Firewall with Advanced Security"  
