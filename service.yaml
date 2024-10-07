@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: Get the status of the service CaptureService_17b059c9
-      win_service_info:
+      ansible.windows.win_service_info:
         name: "CaptureService_17b059c9"
       register: service_info
 
@@ -12,13 +12,13 @@
         var: service_info
 
     - name: Ensure the service is running before continuing
-      win_service:
+      ansible.windows.win_service:
         name: "CaptureService_17b059c9"
         state: started
       when: service_info.status == 'stopped'
 
     - name: Get the status of the service CaptureService_17b059c9 after start
-      win_service_info:
+      ansible.windows.win_service_info:
         name: "CaptureService_17b059c9"
       register: service_info_after
       
