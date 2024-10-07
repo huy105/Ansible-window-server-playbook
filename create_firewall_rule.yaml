@@ -2,6 +2,8 @@
 - name: Create Inbound Firewall Rule on Windows Server
   hosts: all
   gather_facts: false
+  vars_files:
+    - vars/service_vars.yaml  
   tasks:
     - name: Create inbound firewall rules with loop
       loop: "{{ firewall_rules_inbound }}"
