@@ -1,0 +1,20 @@
+---
+- name: Add Registry Keys on Windows Server
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create a new registry key
+      ansible.windows.win_regedit:
+        path: HKEY_LOCAL_MACHINE\SOFTWARE\MyApp
+        name: MyValue
+        type: String
+        data: "MyRegistryValue"
+        state: present
+
+    - name: Create another registry key with a different type
+      ansible.windows.win_regedit:
+        path: HKEY_LOCAL_MACHINE\SOFTWARE\MyApp
+        name: MyDwordValue
+        type: DWord
+        data: 1
+        state: present

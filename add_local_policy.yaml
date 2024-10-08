@@ -1,0 +1,10 @@
+---
+- name: Set Local Group Policy on Windows Server
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Set minimum password length
+      ansible.windows.win_shell: |
+        Import-Module -Name "CimCmdlets"
+        $Path = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'
+        Set-ItemProperty -Path $Path -Name "MinimumPasswordLength" -Value 8
