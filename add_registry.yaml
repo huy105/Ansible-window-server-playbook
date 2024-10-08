@@ -4,17 +4,10 @@
   gather_facts: false
   tasks:
     - name: Create a new registry key
+      loop: "{{ firewall_rules_inbound }}"
       ansible.windows.win_regedit:
-        path: HKLM:\SOFTWARE\MyApp
-        name: MyValue
-        type: String
-        data: "MyRegistryValue"
-        state: present
-
-    - name: Create another registry key with a different type
-      ansible.windows.win_regedit:
-        path: HKLM:\SOFTWARE\MyApp
-        name: MyDwordValue
-        type: DWord
-        data: 1
-        state: present
+        path: "{{ item.path }}"
+        name: "{{ item.name }}"
+        type: "{{ item.type }}"
+        data: "{{ item.data }}"
+        state: "{{ item.state }}"

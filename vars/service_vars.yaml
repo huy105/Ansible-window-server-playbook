@@ -42,3 +42,20 @@ firewall_rules_outbound:
     action: allow
     description: "Allow outbound FTP traffic"
     group: "Windows Firewall with Advanced Security"  
+
+registry_key:
+  - name: MyValue
+    path: HKLM:\SOFTWARE\MyApp
+    type: String
+    data: "MyRegistryValue"
+    state: present
+  - name: MyDwordValue
+    path: HKLM:\SOFTWARE\MyApp
+    type: DWord
+    data: 1
+    state: present
+
+change_policy:
+  - path: 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'
+    name: "disablecad"
+    value: 1
