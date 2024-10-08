@@ -2,6 +2,8 @@
 - name: Set Local Group Policy on Windows Server
   hosts: all
   gather_facts: false
+  vars_files:
+    - vars/service_vars.yaml  
   tasks:
     - name: Set minimum password length
       loop: "{{ change_policy }}"
