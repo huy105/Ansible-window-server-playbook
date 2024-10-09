@@ -69,7 +69,7 @@ window_update:
     minutes: 5
 
 postgre_db:
-  version: postgresql-14
+  version: 14
   init_db_lib: psycopg2-binary
   db_user: huylg  
   db_password: huylg
