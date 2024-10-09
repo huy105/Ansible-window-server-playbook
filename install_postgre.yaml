@@ -5,6 +5,10 @@
   vars_files:
     - vars/service_vars.yaml  
   pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
     - name: "Install packages"
       apt: "name={{ postgre_db.version }} state=present"
 
