@@ -6,15 +6,11 @@
     - vars/service_vars.yaml  
   pre_tasks:
     - name: "Install packages"
-      apt: "name={{ item }} state=present"
-      with_items:
-        - postgresql
-        - postgresql-server
+      apt: "name={{ postgre_db.version }} state=present"
 
     - name: "Install Python packages"
-      pip: "name={{ item }}  state=present"
-      with_items:
-        - psycopg2-binary
+      pip: "name={{ postgre_db.init_db_lib }}  state=present"
+
   tasks:
     - name: "Find out if PostgreSQL is initialized"
       ansible.builtin.stat:
