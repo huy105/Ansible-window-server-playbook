@@ -6,7 +6,7 @@
     - vars/service_vars.yaml  
   pre_tasks:
     - name: "Install packages"
-      dnf: "name={{ item }} state=present"
+      apt: "name={{ item }} state=present"
       with_items:
         - postgresql
         - postgresql-server
