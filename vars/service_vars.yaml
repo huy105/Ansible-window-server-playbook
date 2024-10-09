@@ -59,3 +59,16 @@ change_policy:
   - path: 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'
     name: "disablecad"
     value: 1
+
+window_update:
+  category_names:
+    - SecurityUpdates
+    - CriticalUpdates
+  reboot: false
+  wait_time_before_reboot:
+    minutes: 5
+
+postgre_db:
+  db_user: huylg  
+  db_password: huylg
+  db_name: test-ansible-db

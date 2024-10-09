@@ -1,0 +1,26 @@
+---
+- name: Update Windows Server
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Scan for available updates
+      ansible.windows.win_updates:
+        category_names: "{{ window_update.category_names }}"
+        state: searched
+      register: update_results
+
+    - name: Install all available updates
+      when: update_results.updates | length > 0
+      ansible.windows.win_updates:
+        category_names: "{{ window_update.category_names }}"
+        state: installed
+
+    - name: Wait before rebooting
+      when: window_update.reboot == true
+      ansible.builtin.pause:
+        minutes: "{{ window_update.wait_time_before_reboot.minutes }}"  # minutes
+      
+    - name: Reboot if choose
+      ansible.windows.win_reboot:
+        when: window_update.reboot == true
+
