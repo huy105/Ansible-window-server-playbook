@@ -1,7 +1,7 @@
 ---
 - name: Install PostgreSQL
   hosts: all
-  become: yes
+  become: true
   vars_files:
     - vars/service_vars.yaml  
   pre_tasks:
