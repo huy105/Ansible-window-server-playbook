@@ -15,17 +15,11 @@
       debug:
         var: available_update  
 
-    - name: Get the title of the first update
-      set_fact:
-        first_update_title: "{{ (available_update.updates | dict2items | first).value.title }}"
-
     - name: Install all available updates
       when: available_update.updates | length > 0
       ansible.windows.win_updates:
         category_names: "{{ window_update.category_names }}"
         state: installed
-        accept_list:
-          - "{{ first_update_title }}"
 
     - name: Wait before rebooting
       when: window_update.reboot == true
