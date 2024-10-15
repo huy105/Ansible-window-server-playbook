@@ -15,14 +15,6 @@
       debug:
         var: available_update  
 
-    - name: Download all available updates
-      when: available_update.updates | length > 0
-      ansible.windows.win_updates:
-        category_names: "{{ window_update.category_names }}"
-        state: downloaded
-        reboot: true
-
-
     - name: Install all available updates
       when: available_update.updates | length > 0
       ansible.windows.win_updates:

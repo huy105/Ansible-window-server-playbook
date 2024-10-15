@@ -65,4 +65,4 @@ window_update:
     - SecurityUpdates
   reboot: false
   wait_time_before_reboot:
-    minutes: 5
+    minutes: 15
