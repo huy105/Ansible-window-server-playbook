@@ -17,7 +17,7 @@
 
     - name: Get the title of the first update
       set_fact:
-        first_update_kb: "{{ updates | dict2items | first | value.kb }}"
+        first_update_title: "{{ updates | dict2items | first | value.title }}"
 
     - name: Install all available updates
       when: available_update.updates | length > 0
@@ -25,7 +25,7 @@
         category_names: "{{ window_update.category_names }}"
         state: installed
         accept_list:
-          - "{{ first_update_kb }}"
+          - "{{ first_update_title }}"
 
     - name: Wait before rebooting
       when: window_update.reboot == true
