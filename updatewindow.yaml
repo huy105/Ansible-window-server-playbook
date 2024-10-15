@@ -9,19 +9,19 @@
       ansible.windows.win_updates:
         category_names: "{{ window_update.category_names }}"
         state: searched
-      register: update_results
+      register: available_update
 
     - name: Print available update
       debug:
-        var: update_results  
+        var: available_update  
 
     - name: Install all available updates
-      when: update_results.updates | length > 0
+      when: available_update.updates | length > 0
       ansible.windows.win_updates:
         category_names: "{{ window_update.category_names }}"
         state: installed
         accept_list:
-          - "{{ update_results.updates[0].title }}"
+          - "{{ available_update.update_results.updates[0].title }}"
 
     - name: Wait before rebooting
       when: window_update.reboot == true
