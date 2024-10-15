@@ -17,7 +17,7 @@
 
     - name: Get the title of the first update
       set_fact:
-        first_update_title: "{{ updates | dict2items | first | value.title }}"
+        first_update_title: "{{ (updates | dict2items | first).value.title }}"
 
     - name: Install all available updates
       when: available_update.updates | length > 0
