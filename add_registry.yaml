@@ -6,7 +6,7 @@
     - vars/service_vars.yaml  
   tasks:
     - name: Create a new registry key
-      loop: "{{ firewall_rules_inbound }}"
+      loop: "{{ registry_key }}"
       ansible.windows.win_regedit:
         path: "{{ item.path }}"
         name: "{{ item.name }}"

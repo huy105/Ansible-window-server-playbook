@@ -1,0 +1,15 @@
+---
+- name: Configure windows server to WSUS
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - vars/service_vars.yaml
+  tasks:
+    - name: Create new value
+      loop: "{{ WSUS_service }}"
+      ansible.windows.win_regedit:
+        name: "{{ item.name }}"
+        path: "{{ item.path }}"
+        type: "{{ item.type }}"
+        value: "{{ item.value }}"
+        state: "{{ item.state }}"
