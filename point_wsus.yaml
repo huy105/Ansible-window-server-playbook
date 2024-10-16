@@ -11,5 +11,5 @@
         name: "{{ item.name }}"
         path: "{{ item.path }}"
         type: "{{ item.type }}"
-        value: "{{ item.value }}"
+        data: "{{ item.data }}"
         state: "{{ item.state }}"
