@@ -63,6 +63,6 @@ change_policy:
 window_update:
   category_names:
     - SecurityUpdates
-  reboot: false
+  reboot: true
   wait_time_before_reboot:
     minutes: 15
