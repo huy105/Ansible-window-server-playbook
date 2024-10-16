@@ -13,3 +13,8 @@
         type: "{{ item.type }}"
         data: "{{ item.data }}"
         state: "{{ item.state }}"
+
+    - name: Restart wuauserv service
+      ansible.windows.win_service:
+        name: wuauserv
+        state: restarted
