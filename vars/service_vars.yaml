@@ -71,20 +71,20 @@ WSUS_service:
   - name: WUServer
     path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU'
     type: string
-    value: 'http://winserver:8530'
+    data: 'http://winserver:8530'
     state: present
   - name: WUStatusServer
     path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU'
     type: string
-    value: 'http://winserver:8530'
+    data: 'http://winserver:8530'
     state: present
   - name: UseWUServer
     path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU'
     type: dword
-    value: 1
+    data: 1
     state: present
   - name: AUOptions
     path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU'
     type: dword
-    value: 3
+    data: 3
     state: present
