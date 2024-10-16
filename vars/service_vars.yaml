@@ -69,12 +69,12 @@ window_update:
 
 WSUS_service:
   - name: WUServer
-    path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU'
+    path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
     type: string
     data: 'http://winserver:8530'
     state: present
   - name: WUStatusServer
-    path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU'
+    path: 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
     type: string
     data: 'http://winserver:8530'
     state: present
