@@ -5,21 +5,10 @@
   vars_files:
     - vars/service_vars.yaml  
   tasks:
-    - name: Scan for available updates
-      ansible.windows.win_updates:
-        category_names: "{{ window_update.category_names }}"
-        state: searched
-      register: available_update
-
-    - name: Print available update
-      debug:
-        var: available_update  
-
     - name: Install all available updates
       ansible.windows.win_updates:
         category_names: "{{ window_update.category_names }}"
         state: installed
-        reboot: true
 
     - name: Wait before rebooting
       when: window_update.reboot == true
