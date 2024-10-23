@@ -16,14 +16,14 @@
       debug:
         var: service_info.results
 
-    - name: If any service is stopped, then start it
+    - name: "If any service is {{ services_action.current }}, then start it"
       loop: "{{ service_info.results }}"
       loop_control:
         loop_var: item    
-      when: item.services[0].state == 'stopped'
+      when: item.services[0].state == "{{ services_action.current }}"
       ansible.windows.win_service:
         name: "{{ item.item }}"
-        state: started
+        state: "{{ services_action.action }}"
 
     - name: Get the status of the services after start
       loop: "{{ service_list }}"
